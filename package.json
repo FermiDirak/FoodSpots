@@ -6,6 +6,15 @@
   "repository": "https://github.com/FermiDirak/FoodSpots.git",
   "author": "fermi_dirac <ManueleBryan@gmail.com>",
   "license": "Apache 2.0",
-  "private": false
-
+  "private": false,
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.3"
+  },
+  "devDependencies": {
+    "nodemon": "^1.17.3"
+  },
+  "scripts": {
+    "start": "nodemon server/index.js"
+  }
 }
