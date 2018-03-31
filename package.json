@@ -5,6 +5,7 @@
   "main": "server/index.js",
   "repository": "https://github.com/FermiDirak/FoodSpots.git",
   "author": "fermi_dirac <ManueleBryan@gmail.com>",
-  "license": "Apache License 2.0",
+  "license": "Apache 2.0",
   "private": false
+
 }
