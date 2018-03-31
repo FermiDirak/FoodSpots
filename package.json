@@ -16,6 +16,6 @@
   },
   "scripts": {
     "start": "nodemon server/index.js",
-    "production-start": "cd client; yarn build; cd ..; node server/index.js"
+    "production-start": "cd client; yarn; yarn build; cd ..; node server/index.js"
   }
 }
