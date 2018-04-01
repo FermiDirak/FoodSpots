@@ -36,4 +36,14 @@ jobs:
       # run tests!
       # - run: yarn test
 
+  deploy:
+    machine:
+        enabled: true
+    working_directory: ~/circleci-workflows
+    steps:
+      - checkout
+      - run:
+          name: Deploy
+          command: yarn deploy
+
 

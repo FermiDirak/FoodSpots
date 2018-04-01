@@ -20,7 +20,7 @@
   },
   "scripts": {
     "start": "nodemon server/index.js",
-    "production-start": "cd client; yarn; yarn build; cd ..; node server/index.js",
-    "claudia": "cd client; yarn; yarn build; cd ..; claudia update"
+    "docker-start": "cd client; yarn; yarn build; cd ..; node server/index.js",
+    "deploy": "cd client; yarn deploy; cd ..; claudia update"
   }
 }

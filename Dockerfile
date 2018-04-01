@@ -12,4 +12,4 @@ RUN yarn
 
 EXPOSE 5000
 
-CMD ["yarn", "production-start"]
+CMD ["yarn", "docker-start"]
