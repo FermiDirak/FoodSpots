@@ -42,9 +42,7 @@ jobs:
     working_directory: ~/circleci-workflows
     steps:
       - checkout
-      - run:
-        name: Deploy
-        command: yarn deploy
+      - run: yarn deploy
 
 
 workflows:
