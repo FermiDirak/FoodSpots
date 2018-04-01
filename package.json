@@ -21,6 +21,6 @@
   "scripts": {
     "start": "nodemon server/index.js",
     "docker-start": "cd client; yarn; yarn build; cd ..; node server/index.js",
-    "deploy": "cd client; yarn deploy; cd ..; claudia update"
+    "deploy": "cd client; yarn; yarn deploy; cd ..; claudia update"
   }
 }
