@@ -21,6 +21,6 @@
   "scripts": {
     "start": "nodemon server/index.js",
     "production-start": "cd client; yarn; yarn build; cd ..; node server/index.js",
-    "claudia-deploy": "cd client; yarn; yarn build; cd ..; claudia update"
+    "claudia": "cd client; yarn; yarn build; cd ..; claudia update"
   }
 }
