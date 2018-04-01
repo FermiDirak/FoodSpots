@@ -13,7 +13,7 @@ jobs:
   build:
     docker:
       # specify the version you desire here
-      - image: circleci/node:7.10
+      - image: circleci/node:latest
 
       # Specify service dependencies here if necessary
       # CircleCI maintains a library of pre-built images
@@ -44,11 +44,12 @@ jobs:
       # - run: yarn test
 
   deploy:
-    machine:
-      enabled: true
+    docker:
+      - image: circleci/node:latest
     working_directory: ~/circleci-workflows
     steps:
       - checkout
+      - run: npm install yarn
       - run: yarn deploy
 
 
