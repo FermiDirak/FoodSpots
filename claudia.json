@@ -1,0 +1,10 @@
+{
+  "lambda": {
+    "role": "food-spots-executor",
+    "name": "food-spots",
+    "region": "us-west-2"
+  },
+  "api": {
+    "id": "e4jidi169k"
+  }
+}
