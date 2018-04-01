@@ -43,8 +43,8 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Deploy
-          command: yarn deploy
+        name: Deploy
+        command: yarn deploy
 
 
 workflows:
@@ -52,6 +52,6 @@ workflows:
   build_and_deploy:
     jobs:
       - build
-      - deploy
+      - deploy:
         requires:
           - build
