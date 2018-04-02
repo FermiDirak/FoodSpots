@@ -4,13 +4,32 @@ import HomePage from './HomePage';
 import styled from 'styled-components';
 
 import AppBar from 'material-ui/AppBar';
+import FlatButton from 'material-ui/FlatButton';
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      loggedIn: true,
+    }
+  }
+
+  logged = (props) => {
+
+  }
+
   render() {
     return (
       <BrowserRouter>
         <Container>
-          <AppBar title='FoodSpots'/>
+          <AppBar title='FoodSpots'
+            iconElementRight={
+              this.state.loggedIn
+              ? undefined
+              : <FlatButton label='Sign Up'/>
+            }
+          />
 
           <Content>
 

@@ -27,7 +27,8 @@ class Map extends Component {
           style={{width: '100%', height: '100%'}}
           zoom={15}
           initialCenter={{ lng: -122.4089666, lat: 37.7836924 }}
-          centerAroundCurrentLocation={true}>
+          centerAroundCurrentLocation={true}
+        >
 
           {/* <Marker position={{ lat: -34.397, lng: 150.644 }}/> */}
 
