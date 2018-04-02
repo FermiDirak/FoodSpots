@@ -14,8 +14,8 @@ class RestaurantsCard extends Component {
 
   render() {
     return (
-      <Card style={{width: '30%'}}>
-        <CardTitle title='Favorite Restaurants'/>
+      <Card style={{width: '30%', maxWidth: '500px'}}>
+        <CardTitle title='Favorite Restaurants' style={{textAlign: 'center'}}/>
         <CardActions style={{display: 'flex', justifyContent: 'center'}}>
           <FlatButton label='add restaurant'/>
         </CardActions>
