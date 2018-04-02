@@ -14,12 +14,34 @@ class Map extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      longitude: 0,
-      latitiude: 0,
+      showingInfoWindow: false,
+      selectedPlace: {},
+      activeMarker: {},
     };
   }
 
+  onMapClick = (place) => {
+    if (this.state.showingInfoWindow) {
+      this.setState({
+        showingInfoWindow: false,
+        activeMarker: null,
+      });
+    }
+  }
+
+  onMarkerClick = (place, marker, e) => {
+    if (!this.state.showingInfoWindow) {
+      this.setState({
+        showingInfoWindow: true,
+        selectedPlace: place,
+        activeMarker: marker,
+      })
+    }
+  }
+
   render() {
+    console.log(this.state.showingInfoWindow);
+
     return (
       <MapContainer>
         <GoogleMap
@@ -28,16 +50,18 @@ class Map extends Component {
           zoom={15}
           initialCenter={{ lng: -122.4089666, lat: 37.7836924 }}
           centerAroundCurrentLocation={true}
+          onClick={this.onMapClick}
         >
-
-          {/* <Marker position={{ lat: -34.397, lng: 150.644 }}/> */}
 
           <Marker onClick={this.onMarkerClick}
             name={'Current location'} />
 
-          <InfoWindow onClose={this.onInfoWindowClose}>
+          <InfoWindow
+            marker={this.state.activeMarker}
+            visible={this.state.showingInfoWindow}
+          >
             <div>
-              <h1>hello</h1>
+              <h1>hello {this.state.selectedPlace.name} </h1>
             </div>
           </InfoWindow>
 
