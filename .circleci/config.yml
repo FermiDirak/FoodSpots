@@ -43,6 +43,7 @@ jobs:
       # run tests!
       # - run: yarn test
 
+  # Still broken. Needs configuring before continuous Deployment can happen
   deploy:
     docker:
       - image: circleci/node:latest
@@ -58,4 +59,4 @@ workflows:
   build_and_deploy:
     jobs:
       - build
-      - deploy
+      # - deploy
