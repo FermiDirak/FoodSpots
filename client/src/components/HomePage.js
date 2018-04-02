@@ -9,9 +9,26 @@ class HomePage extends Component {
     super(props);
     this.state = {  }
   }
+
+  onButtonClick = () => {
+    console.log('hi');
+  }
+
   render() {
     return (
-      <Map/>
+      <div>
+        <Map/>
+
+
+        <Float>
+          Hello World
+
+          <button style={{pointerEvents:'all'}} onClick={this.onButtonClick}>
+            Swag
+          </button>
+        </Float>
+
+      </div>
     );
   }
 }
@@ -22,6 +39,12 @@ const Container = styled.div`
   background: red;
   width: 100%;
   height: 100%;
+`;
+
+const Float = styled.div`
+  position: relative;
+  background: lightblue;
+  pointer-events: none;
 `;
 
 export default HomePage;
