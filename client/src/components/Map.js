@@ -7,7 +7,7 @@ import {
   GoogleApiWrapper,
   Map as GoogleMap,
   InfoWindow,
-  Marker
+  Marker,
 } from 'google-maps-react';
 
 class Map extends Component {
@@ -40,7 +40,7 @@ class Map extends Component {
   }
 
   render() {
-    console.log(this.state.showingInfoWindow);
+    console.log(this.state.selectedPlace);
 
     return (
       <MapContainer>
