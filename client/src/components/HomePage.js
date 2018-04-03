@@ -20,13 +20,11 @@ class HomePage extends Component {
       <Container>
         <Map/>
 
-
         <Content>
           <Float>
             <RestaurantsCard/>
           </Float>
         </Content>
-
       </Container>
     );
   }
@@ -38,6 +36,7 @@ const Container = styled.div`
 `;
 
 const Content = Container.extend`
+  background: rgba(0, 0, 0, 0);
   position: relative;
   padding: 16px;
   pointer-events: none;
