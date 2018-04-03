@@ -24,14 +24,12 @@ class Map extends Component {
       return;
     }
 
-    console.log(place);
+    console.log(place.placeId);
 
-    if (this.state.showingInfoWindow) {
-      this.setState({
-        showingInfoWindow: false,
-        activeMarker: null,
-      });
-    }
+    this.setState({
+      showingInfoWindow: true,
+      activeMarker: null,
+    });
   }
 
   onMarkerClick = (place, marker, e) => {
@@ -47,6 +45,8 @@ class Map extends Component {
   render() {
     console.log(this.state.selectedPlace);
 
+    console.log(this.props.google);
+
     return (
       <MapContainer>
         <GoogleMap
@@ -58,10 +58,11 @@ class Map extends Component {
           onClick={this.onMapClick}
           clickableIcons={true}
           disableDefaultUI={true}
+          InfoWindow={<div>Hello</div>}
         >
 
-          <Marker onClick={this.onMarkerClick}
-            name={'Current location'} />
+          {/* <Marker onClick={this.onMarkerClick}
+            name={'Current location'} /> */}
 
           <InfoWindow
             marker={this.state.activeMarker}
