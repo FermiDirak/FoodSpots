@@ -3,9 +3,8 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import keys from './../keys';
 
-import {
+import GoogleMap, {
   GoogleApiWrapper,
-  Map as GoogleMap,
   InfoWindow,
   Marker,
 } from 'google-maps-react';
@@ -20,7 +19,13 @@ class Map extends Component {
     };
   }
 
-  onMapClick = (place) => {
+  onMapClick = (props, event, place) => {
+    if (!place.placeId) {
+      return;
+    }
+
+    console.log(place);
+
     if (this.state.showingInfoWindow) {
       this.setState({
         showingInfoWindow: false,
@@ -47,10 +52,12 @@ class Map extends Component {
         <GoogleMap
           google={this.props.google}
           style={{width: '100%', height: '100%'}}
+          className='map'
           zoom={15}
-          initialCenter={{ lng: -122.4089666, lat: 37.7836924 }}
           centerAroundCurrentLocation={true}
           onClick={this.onMapClick}
+          clickableIcons={true}
+          disableDefaultUI={true}
         >
 
           <Marker onClick={this.onMarkerClick}
@@ -79,6 +86,17 @@ const MapContainer = styled.div`
   left: 0;
 `;
 
+const loadingContainer = styled.div`
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: white;
+`;
+
 export default GoogleApiWrapper({
   apiKey: keys.google_maps_api_key,
+  libraries: ['places', 'visualization'],
+  LoadingContainer: loadingContainer,
 })(Map);
