@@ -2,14 +2,10 @@ const express    = require('express');
 const bodyParser = require('body-parser');
 const path       = require('path');
 
+const routes = require('./routes');
+
 const app = express();
 
-/* ------------------------- Setting up MiddleWare -------------------------- */
-
-app.get('/hi', (req, res) => {
-  res.send('hi');
-});
-
-/* ----------------------------- Exporting App ------------------------------ */
+app.use('/api/v1', routes);
 
 module.exports = app;
