@@ -4,6 +4,7 @@ import styled from 'styled-components';
 
 import Map from './Map';
 import RestaurantsCard from './RestaurantsCard';
+import SearchCard from './SearchCard';
 
 class HomePage extends Component {
   constructor(props) {
@@ -21,14 +22,27 @@ class HomePage extends Component {
         <Map/>
 
         <Content>
+          <Header>
           <Float>
             <RestaurantsCard/>
           </Float>
+
+          <Float style={{margin: '24px'}}>
+            <SearchCard/>
+          </Float>
+          </Header>
         </Content>
       </Container>
     );
   }
 }
+
+const Header = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 16px;
+`;
 
 const Container = styled.div`
   width: 100%;
@@ -38,7 +52,6 @@ const Container = styled.div`
 const Content = Container.extend`
   background: rgba(0, 0, 0, 0);
   position: relative;
-  padding: 16px;
   pointer-events: none;
 `;
 

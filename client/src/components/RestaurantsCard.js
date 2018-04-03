@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import {Card, CardTitle, CardActions, CardText} from 'material-ui/Card';
+import { Card, CardTitle, CardActions, CardText } from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
 
 class RestaurantsCard extends Component {
