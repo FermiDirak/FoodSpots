@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import keys from './../keys';
 
-import { compose, withProps } from 'recompose';
+import { compose, withProps, withState, withHandlers } from 'recompose';
 import {
   withScriptjs,
   withGoogleMap,
@@ -39,6 +39,24 @@ const Map = compose(
   }),
   withScriptjs,
   withGoogleMap,
+  withState('places', 'updatePlaces', ''),
+  withHandlers(() => {
+    const refs = {
+      map: undefined,
+    };
+
+    return {
+      onMapMounted: () => ref => {
+        refs.map = ref
+      },
+      fetchPlaces: ({ updatedPlaces }) => {
+        let places;
+        const bounds = refs.map.getBounds();
+        const service = new google.maps.places.PlacesService(refs.map)
+
+      }
+    }
+  })
 )((props) => (
     <GoogleMap
       defaultZoom={16}
