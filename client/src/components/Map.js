@@ -3,13 +3,80 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import keys from './../keys';
 
-import { compose, withProps, withState, withHandlers } from 'recompose';
-import {
-  withScriptjs,
-  withGoogleMap,
-  GoogleMap,
+import GoogleMap, {
+  GoogleApiWrapper,
+  InfoWindow,
   Marker,
-} from 'react-google-maps';
+} from 'google-maps-react';
+
+class Map extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      showingInfoWindow: false,
+      selectedPlace: {},
+      activeMarker: {},
+    };
+  }
+
+  onMapClick = (props, event, place) => {
+    if (!place.placeId) {
+      return;
+    }
+
+    console.log(place);
+
+    if (this.state.showingInfoWindow) {
+      this.setState({
+        showingInfoWindow: false,
+        activeMarker: null,
+      });
+    }
+  }
+
+  onMarkerClick = (place, marker, e) => {
+    if (!this.state.showingInfoWindow) {
+      this.setState({
+        showingInfoWindow: true,
+        selectedPlace: place,
+        activeMarker: marker,
+      })
+    }
+  }
+
+  render() {
+    console.log(this.state.selectedPlace);
+
+    return (
+      <MapContainer>
+        <GoogleMap
+          google={this.props.google}
+          style={{width: '100%', height: '100%'}}
+          className='map'
+          zoom={15}
+          centerAroundCurrentLocation={true}
+          onClick={this.onMapClick}
+          clickableIcons={true}
+          disableDefaultUI={true}
+        >
+
+          <Marker onClick={this.onMarkerClick}
+            name={'Current location'} />
+
+          <InfoWindow
+            marker={this.state.activeMarker}
+            visible={this.state.showingInfoWindow}
+          >
+            <div>
+              <h1>hello {this.state.selectedPlace.name} </h1>
+            </div>
+          </InfoWindow>
+
+        </GoogleMap>
+      </MapContainer>
+    );
+  }
+}
 
 const MapContainer = styled.div`
   position: fixed;
@@ -19,7 +86,7 @@ const MapContainer = styled.div`
   left: 0;
 `;
 
-const LoadingContainer = styled.div`
+const loadingContainer = styled.div`
   position: fixed;
   width: 100%;
   height: 100%;
@@ -28,43 +95,8 @@ const LoadingContainer = styled.div`
   background: white;
 `;
 
-const Map = compose(
-  withProps({
-    googleMapURL: `https://maps.googleapis.com/maps/api/js?
-    key=${keys.google_maps_api_key}
-    &v=3.exp&libraries=geometry,drawing,places`,
-    loadingElement: <div> <LoadingContainer/> </div>,
-    containerElement: <div style={{position: 'fixed', width: '100%', height: 'calc(100% - 64px)',}}/>,
-    mapElement: <div style={{width: '100%', height: '100%'}}/>,
-  }),
-  withScriptjs,
-  withGoogleMap,
-  withState('places', 'updatePlaces', ''),
-  withHandlers(() => {
-    const refs = {
-      map: undefined,
-    };
-
-    return {
-      onMapMounted: () => ref => {
-        refs.map = ref
-      },
-      fetchPlaces: ({ updatedPlaces }) => {
-        let places;
-        const bounds = refs.map.getBounds();
-        const service = new google.maps.places.PlacesService(refs.map)
-
-      }
-    }
-  })
-)((props) => (
-    <GoogleMap
-      defaultZoom={16}
-      defaultCenter={{ lat: 37.783692, lng: -122.408967 }}
-    >
-      <Marker position={{ lat: 37.783692, lng: -122.408967 }} />
-    </GoogleMap>
-  ),
-);
-
-export default Map;
+export default GoogleApiWrapper({
+  apiKey: keys.google_maps_api_key,
+  libraries: ['places', 'visualization'],
+  LoadingContainer: loadingContainer,
+})(Map);
