@@ -34,15 +34,21 @@ class Map extends Component {
 
     console.log(placeService);
 
-    placeService.nearbySearch({
-      location: {lat: 53.2734, lng: -122.4091074},
-      radius: '5000',
-      type: ['food']
-    }, (results, status, pagination) => {
-      console.log(results);
-
-      console.log('hi');
+    placeService.getDetails({placeId}, (place, status) => {
+      if (status === props.google.maps.places.PlacesServiceStatus.OK) {
+        console.log(place);
+      }
     });
+
+    // placeService.nearbySearch({
+    //   location: {lat: 53.2734, lng: -122.4091074},
+    //   radius: '5000',
+    //   type: ['food']
+    // }, (results, status, pagination) => {
+    //   console.log(results);
+
+    //   console.log('hi');
+    // });
 
     if (this.state.showingInfoWindow) {
       this.setState({
