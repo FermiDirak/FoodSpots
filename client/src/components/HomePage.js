@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import Map from './Map';
 import RestaurantsCard from './RestaurantsCard';
 import SearchCard from './SearchCard';
+import AddPlaceButton from './AddPlaceButton';
 
 class HomePage extends Component {
   constructor(props) {
@@ -31,7 +32,14 @@ class HomePage extends Component {
             <SearchCard/>
           </Float>
           </Header>
+
+          <Bottom>
+            <Float style={{margin: '24px'}}>
+              <AddPlaceButton placeName='reddit headquarters'/>
+            </Float>
+          </Bottom>
         </Content>
+
       </Container>
     );
   }
@@ -42,6 +50,14 @@ const Header = styled.div`
   flex-direction: row;
   justify-content: space-between;
   margin: 16px;
+`;
+
+const Bottom = styled.div`
+  position: fixed;
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  bottom: 0;
 `;
 
 const Container = styled.div`
