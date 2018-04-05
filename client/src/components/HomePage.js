@@ -45,7 +45,8 @@ class HomePage extends Component {
 
           <Bottom>
             <Float style={{margin: '128px 24px'}}>
-              { this.state.selectedPlace
+              {
+                this.state.selectedPlace
                 ? <AddPlaceButton placeName={this.state.selectedPlace.name}/>
                 : undefined
               }
