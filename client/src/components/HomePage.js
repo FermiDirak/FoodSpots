@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 import Map from './Map';
@@ -10,7 +9,10 @@ import AddPlaceButton from './AddPlaceButton';
 class HomePage extends Component {
   constructor(props) {
     super(props);
-    this.state = {  }
+    this.state = {
+      selectedPlace: undefined,
+      favoritePlaces: [],
+    };
   }
 
   onButtonClick = () => {
@@ -21,6 +23,8 @@ class HomePage extends Component {
   onPlaceClicked = (place) => {
     console.log('IM HOMEPAGE');
     console.log(place);
+
+    this.setState({selectedPlace: place});
   }
 
   render() {
@@ -40,8 +44,11 @@ class HomePage extends Component {
           </Header>
 
           <Bottom>
-            <Float style={{margin: '24px'}}>
-              <AddPlaceButton placeName='reddit headquarters'/>
+            <Float style={{margin: '128px 24px'}}>
+              { this.state.selectedPlace
+                ? <AddPlaceButton placeName={this.state.selectedPlace.name}/>
+                : undefined
+              }
             </Float>
           </Bottom>
         </Content>
