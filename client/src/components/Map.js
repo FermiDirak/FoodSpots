@@ -10,6 +10,10 @@ import GoogleMap, {
 } from 'google-maps-react';
 
 class Map extends Component {
+  static propType = {
+    onPlaceClicked: PropTypes.func,
+  }
+
   constructor(props) {
     super(props);
     this.state = {
@@ -17,6 +21,8 @@ class Map extends Component {
       selectedPlace: {},
       activeMarker: {},
     };
+
+    console.log(props);
   }
 
   onMapClick = (props, map, place) => {
@@ -26,17 +32,11 @@ class Map extends Component {
       return;
     }
 
-    console.log(placeId);
-
-    console.log(props.google.maps.places.PlacesServiceStatus);
-
     const placeService = new props.google.maps.places.PlacesService(map);
-
-    console.log(placeService);
 
     placeService.getDetails({placeId}, (place, status) => {
       if (status === props.google.maps.places.PlacesServiceStatus.OK) {
-        console.log(place);
+        this.props.onPlaceClicked(place);
       }
     });
 
@@ -69,8 +69,6 @@ class Map extends Component {
   }
 
   render() {
-    console.log(this.state.selectedPlace);
-
     return (
       <MapContainer>
         <GoogleMap

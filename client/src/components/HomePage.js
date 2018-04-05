@@ -17,10 +17,16 @@ class HomePage extends Component {
     console.log('hi');
   }
 
+  /* called when a place is clicked on the map */
+  onPlaceClicked = (place) => {
+    console.log('IM HOMEPAGE');
+    console.log(place);
+  }
+
   render() {
     return (
       <Container>
-        <Map/>
+        <Map onPlaceClicked={this.onPlaceClicked}/>
 
         <Content>
           <Header>

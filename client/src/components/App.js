@@ -15,10 +15,6 @@ class App extends Component {
     }
   }
 
-  logged = (props) => {
-
-  }
-
   render() {
     return (
       <BrowserRouter>
