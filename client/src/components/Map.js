@@ -19,12 +19,30 @@ class Map extends Component {
     };
   }
 
-  onMapClick = (props, event, place) => {
-    if (!place.placeId) {
+  onMapClick = (props, map, place) => {
+    let placeId = place.placeId;
+
+    if (!placeId) {
       return;
     }
 
-    console.log(place);
+    console.log(placeId);
+
+    console.log(props.google.maps.places.PlacesServiceStatus);
+
+    const placeService = new props.google.maps.places.PlacesService(map);
+
+    console.log(placeService);
+
+    placeService.nearbySearch({
+      location: {lat: 53.2734, lng: -122.4091074},
+      radius: '5000',
+      type: ['food']
+    }, (results, status, pagination) => {
+      console.log(results);
+
+      console.log('hi');
+    });
 
     if (this.state.showingInfoWindow) {
       this.setState({
