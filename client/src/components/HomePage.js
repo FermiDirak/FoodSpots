@@ -34,13 +34,13 @@ class HomePage extends Component {
 
         <Content>
           <Header>
-          <Float>
-            <RestaurantsCard/>
-          </Float>
+            <Float>
+              <RestaurantsCard/>
+            </Float>
 
-          <Float style={{margin: '24px'}}>
-            <SearchCard/>
-          </Float>
+            <Float style={{margin: '24px'}}>
+              <SearchCard/>
+            </Float>
           </Header>
 
           <Bottom>

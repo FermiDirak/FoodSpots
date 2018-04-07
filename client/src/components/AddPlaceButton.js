@@ -9,11 +9,14 @@ import FlatButton from 'material-ui/FlatButton';
 class AddPlaceButton extends PureComponent {
   static propTypes = {
     placeName: PropTypes.string,
+    onClick: PropTypes.func,
   }
 
   render() {
     return (
-      <Card style={{display: 'inline-block'}}>
+      <Card zDepth={5} style={{display: 'inline-block'}}
+        onClick={this.props.onClick}
+      >
         <FlatButton style={{height: '52px'}}>
           <FlexBox>
             <MaterialIcon icon='add'/>
