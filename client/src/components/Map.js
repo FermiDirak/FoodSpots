@@ -29,6 +29,7 @@ class Map extends Component {
     let placeId = place.placeId;
 
     if (!placeId) {
+      this.props.onPlaceClicked(undefined);
       return;
     }
 
