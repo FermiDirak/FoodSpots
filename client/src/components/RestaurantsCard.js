@@ -22,8 +22,8 @@ class RestaurantsCard extends Component {
 
         <div>
           {
-            this.props.restaurants.map((restaurant) => {
-              return <RestaurantItem restaurant={restaurant}/>
+            this.props.restaurants.map((restaurant, i) => {
+            return <div key={i}> <RestaurantItem restaurant={restaurant}/> </div>
             })
           }
         </div>

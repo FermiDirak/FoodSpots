@@ -9,8 +9,11 @@ import GoogleMap, {
   Marker,
 } from 'google-maps-react';
 
+import pruneRestaurant from './../lib/pruneRestaurant';
+
 class Map extends Component {
   static propType = {
+    restaurants: PropTypes.array,
     onPlaceClicked: PropTypes.func,
   }
 
@@ -21,8 +24,6 @@ class Map extends Component {
       selectedPlace: {},
       activeMarker: {},
     };
-
-    console.log(props);
   }
 
   onMapClick = (props, map, place) => {
@@ -37,6 +38,8 @@ class Map extends Component {
 
     placeService.getDetails({placeId}, (place, status) => {
       if (status === props.google.maps.places.PlacesServiceStatus.OK) {
+        place = pruneRestaurant(place);
+
         this.props.onPlaceClicked(place);
       }
     });
@@ -70,6 +73,13 @@ class Map extends Component {
   }
 
   render() {
+    if (this.props.restaurants.length > 0) {
+      console.log(this.props.restaurants[0].location.lat);
+    }
+
+    console.log(this.props.restaurants);
+
+
     return (
       <MapContainer>
         <GoogleMap

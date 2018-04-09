@@ -15,27 +15,32 @@ class HomePage extends Component {
     };
   }
 
-  onButtonClick = () => {
-    console.log('hi');
-  }
-
   /* called when a place is clicked on the map */
   onPlaceClicked = (place) => {
-    console.log('IM HOMEPAGE');
-    console.log(place);
-
     this.setState({selectedPlace: place});
+  }
+
+  /* called when add place is clicked */
+  onAddPlaceClicked = () => {
+    let { selectedPlace, favoritePlaces } = this.state;
+    favoritePlaces.push(selectedPlace);
+    selectedPlace = undefined;
+
+    this.setState({
+      selectedPlace,
+      favoritePlaces,
+    });
   }
 
   render() {
     return (
       <Container>
-        <Map onPlaceClicked={this.onPlaceClicked}/>
+        <Map onPlaceClicked={this.onPlaceClicked} restaurants={this.state.favoritePlaces}/>
 
         <Content>
           <Header>
             <Float>
-              <RestaurantsCard/>
+              <RestaurantsCard restaurants={this.state.favoritePlaces}/>
             </Float>
 
             <Float style={{margin: '24px'}}>
@@ -47,7 +52,9 @@ class HomePage extends Component {
             <Float style={{margin: '128px 24px'}}>
               {
                 this.state.selectedPlace
-                ? <AddPlaceButton placeName={this.state.selectedPlace.name}/>
+                ? <AddPlaceButton placeName={this.state.selectedPlace.name}
+                    onClick={this.onAddPlaceClicked}
+                  />
                 : undefined
               }
             </Float>
