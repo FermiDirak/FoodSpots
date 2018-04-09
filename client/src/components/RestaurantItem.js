@@ -8,7 +8,7 @@ class RestaurantItem extends Component {
 
   render() {
     return (
-      <div>{this.props.restaurant.name}<br/></div>
+      <div style={{padding: '8px'}}>{this.props.restaurant.name}<br/></div>
     );
   }
 }
