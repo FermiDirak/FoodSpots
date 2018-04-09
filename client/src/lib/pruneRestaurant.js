@@ -4,6 +4,8 @@
  * @return {object} pruned restaurant object
  */
 let pruneRestaurant = (restaurant) => {
+  console.log('!!!', restaurant);
+
   return {
     address: restaurant.formatted_address,
     short_address: restaurant.vicinity,
@@ -16,8 +18,8 @@ let pruneRestaurant = (restaurant) => {
     id: restaurant.place_id,
     name: restaurant.name,
     opening_hours: {
-      periods: restaurant.opening_hours.periods,
-      weekday_text: restaurant.opening_hours.weekday_text,
+      periods: restaurant.opening_hours ? restaurant.opening_hours.periods : [],
+      weekday_text: restaurant.opening_hours ? restaurant.opening_hours.weekday_text : [],
     },
     photos: restaurant.photos,
     price_level: restaurant.price_level,

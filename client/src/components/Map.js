@@ -93,9 +93,16 @@ class Map extends Component {
           disableDefaultUI={true}
         >
 
-          <Marker onClick={this.onMarkerClick}
-            name={'Current location'} />
-
+          {
+            this.props.restaurants.map((restaurant, i) => {
+              return (
+                <Marker key={i} name={restaurant.name}
+                  onClick={this.onMarkerClick}
+                  position={restaurant.location}
+                />
+              )
+            })
+          }
           <InfoWindow
             marker={this.state.activeMarker}
             visible={this.state.showingInfoWindow}
