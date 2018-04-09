@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 
+
+
 import Map from './Map';
 import RestaurantsCard from './RestaurantsCard';
 import SearchCard from './SearchCard';
@@ -9,10 +11,19 @@ import AddPlaceButton from './AddPlaceButton';
 class HomePage extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      selectedPlace: undefined,
-      favoritePlaces: [],
-    };
+
+    let appLocalStorage = window.localStorage.getItem('state');
+    appLocalStorage = JSON.parse(appLocalStorage);
+
+    if (appLocalStorage !== null) {
+      this.state = appLocalStorage;
+    } else {
+      this.state = {
+        selectedPlace: undefined,
+        favoritePlaces: [],
+      };
+    }
+
   }
 
   /* called when a place is clicked on the map */
@@ -30,6 +41,8 @@ class HomePage extends Component {
       selectedPlace,
       favoritePlaces,
     });
+
+    window.localStorage.setItem('state', JSON.stringify(this.state));
   }
 
   render() {
